@@ -3,30 +3,51 @@
 const inputAmigo = document.getElementById('amigo');
 const listaEl = document.getElementById('listaAmigos');
 const resultadoEl = document.getElementById('resultado');
+const btnSortear = document.getElementById('btnSortear');
 
-let amigos = [];
+const STORAGE_KEY = 'amigo-secreto:amigos';
+let amigos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+function salvar() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(amigos));
+}
 
 function renderLista() {
     listaEl.innerHTML = '';
-    amigos.forEach((nome, idx) => {
-        const li = document.createElement('li');
-        li.className = 'name-item';
-        li.textContent = nome;
+    if (amigos.length === 0) {
+        const vazio = document.createElement('li');
+        vazio.className = 'empty-item';
+        vazio.textContent = 'Nenhum amigo adicionado.';
+        listaEl.appendChild(vazio);
+    } else {
+        amigos.forEach((nome, idx) => {
+            const li = document.createElement('li');
+            li.className = 'name-item';
 
-        const btnRemover = document.createElement('button');
-        btnRemover.type = 'button';
-        btnRemover.className = 'button-remove';
-        btnRemover.textContent = 'Remover';
-        btnRemover.addEventListener('click', () => {
-            amigos.splice(idx, 1);
-            renderLista();
-            limparResultado();
+            const span = document.createElement('span');
+            span.textContent = nome;
+            span.className = 'name-text';
+            li.appendChild(span);
+
+            const btnRemover = document.createElement('button');
+            btnRemover.type = 'button';
+            btnRemover.className = 'button-remove';
+            btnRemover.textContent = 'Remover';
+            btnRemover.addEventListener('click', () => {
+                amigos.splice(idx, 1);
+                salvar();
+                renderLista();
+                limparResultado();
+            });
+
+            li.appendChild(document.createTextNode(' '));
+            li.appendChild(btnRemover);
+            listaEl.appendChild(li);
         });
+    }
 
-        li.appendChild(document.createTextNode(' '));
-        li.appendChild(btnRemover);
-        listaEl.appendChild(li);
-    });
+    // Atualiza estado do botão de sortear
+    if (btnSortear) btnSortear.disabled = amigos.length === 0;
 }
 
 function limparResultado() {
@@ -40,7 +61,17 @@ function adicionarAmigo() {
         inputAmigo.focus();
         return;
     }
+
+    // Evitar duplicatas (case-insensitive)
+    const existe = amigos.some(a => a.toLowerCase() === nome.toLowerCase());
+    if (existe) {
+        alert('Este nome já está na lista.');
+        inputAmigo.focus();
+        return;
+    }
+
     amigos.push(nome);
+    salvar();
     inputAmigo.value = '';
     inputAmigo.focus();
     renderLista();
@@ -63,9 +94,15 @@ function sortearAmigo() {
 
 // Ativa Enter para adicionar
 inputAmigo.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') adicionarAmigo();
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        adicionarAmigo();
+    }
 });
 
 // Expõe funções para os botões com onclick no HTML
 window.adicionarAmigo = adicionarAmigo;
 window.sortearAmigo = sortearAmigo;
+
+// Inicialização
+renderLista();
