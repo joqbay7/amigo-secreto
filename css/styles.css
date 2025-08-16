@@ -142,9 +142,18 @@ ul {
     text-align: center;
 }
 
+.button-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column; /* empilha os botões */
+    align-items: center;    /* centraliza horizontalmente */
+    gap: 12px;
+    justify-content: center;
+}
+
 /* Botão de sortear título */
 .button-draw {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     width: 100%;
     padding: 10px 40px;
@@ -159,4 +168,143 @@ ul {
 
 .button-draw:hover {
     background-color: var(--color-button-hover);
+}
+
+.name-list .name-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px; /* distância entre nome e controles */
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #fff;
+    margin-bottom: 8px;
+}
+
+.name-text {
+    flex: 1;
+    word-break: break-word;
+}
+
+/* container dos botões pequenos (editar/remover) */
+.name-item .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* botões pequenos (editar/remover) */
+.button-edit,
+.button-remove {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #f4f4f4;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* visual diferenciado para o remover (menor destaque) */
+.button-remove {
+    background: #ffecec;
+    border-color: #ffcccc;
+    color: #a00;
+}
+
+/* botão Reiniciar */
+.button-reset {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+/* desabilitado */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* edição inline */
+.edit-input {
+    font-size: 16px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 420px;
+}
+
+/* botões de salvar/cancelar (pequenos) */
+.button-save,
+.button-cancel {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #fff;
+    cursor: pointer;
+}
+
+/* destaque para salvar */
+.button-save {
+    background: var(--color-button);
+    color: var(--color-white);
+    border-color: rgba(0,0,0,0.08);
+}
+
+/* cancelar com baixíssimo destaque */
+.button-cancel {
+    background: #f4f4f4;
+    color: var(--color-text);
+}
+
+/* Modal de confirmação */
+.modal.hidden {
+    display: none;
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+}
+.modal-content {
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.modal-title {
+    margin-bottom: 8px;
+    color: var(--color-text);
+    font-weight: 700;
+}
+.modal-message {
+    margin-bottom: 16px;
+    color: var(--color-text);
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* melhora contraste do botão de remover na modal */
+.modal .button-remove {
+    background: #ff6b6b;
+    color: #fff;
+    border-color: rgba(0,0,0,0.08);
+}
+.modal .button-remove:hover {
+    background: #e55a5a;
 }

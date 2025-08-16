@@ -32,9 +32,26 @@
                     <img src="assets/play_circle_outline.png" alt="Ícone para sortear">
                     Sortear amigo
                 </button>
+
+                <!-- Novo botão Reiniciar -->
+                <button id="btnReset" class="button-reset" onclick="resetLista()" aria-label="Reiniciar lista">
+                    Reiniciar lista
+                </button>
             </div>
         </section>
     </main>
+
+    <!-- Modal de confirmação (adicione antes do script.js) -->
+    <div id="confirmModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+        <div class="modal-content" role="document">
+            <h3 id="confirmTitle" class="modal-title">Confirmação</h3>
+            <p id="confirmMessage" class="modal-message"></p>
+            <div class="modal-actions">
+                <button id="confirmCancel" class="button-cancel" type="button">Cancelar</button>
+                <button id="confirmOk" class="button-remove" type="button">Remover</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js" defer></script>
 </body>
