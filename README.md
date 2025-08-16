@@ -1,30 +1,59 @@
 # Amigo Secreto
 
-## Descrição
-O projeto "Amigo Secreto" é uma aplicação web que permite aos usuários inserir nomes de amigos em uma lista e realizar um sorteio aleatório para determinar quem é o "amigo secreto". A aplicação é simples e intuitiva, ideal para eventos como festas de fim de ano, aniversários ou qualquer ocasião em que um sorteio de amigo secreto seja desejado.
+Aplicação simples para gerenciar uma lista de participantes e sortear o "amigo secreto". Feita em HTML, CSS e JavaScript — com persistência via localStorage, edição inline dos nomes e modal de confirmação para remoção e reinício.
 
-## Estrutura do Projeto
-O projeto é composto pelos seguintes arquivos:
-
-- **index.html**: Contém a estrutura da aplicação, incluindo campos de entrada para nomes, botões para adicionar nomes e realizar o sorteio, além de uma seção para exibir a lista de nomes e o resultado do sorteio.
+## Demo
   
-- **css/styles.css**: Define os estilos da aplicação, incluindo layout, cores, fontes e outros aspectos visuais para melhorar a interface do usuário.
+![Projeto](assets/git-projeto.gif)
 
-- **js/script.js**: Implementa a funcionalidade da aplicação, incluindo funções para adicionar nomes à lista, validar entradas, exibir a lista de nomes e selecionar aleatoriamente um nome quando o botão "Sortear Amigo" é clicado.
+---
 
-## Como Usar
-1. **Adicionar Nomes**: Insira o nome de um amigo no campo de texto e clique no botão "Adicionar". O nome será adicionado à lista visível abaixo.
-  
-2. **Visualizar a Lista**: Todos os nomes adicionados aparecerão em uma lista abaixo do campo de entrada.
+## Funcionalidades
 
-3. **Sortear Amigo**: Após adicionar os nomes desejados, clique no botão "Sortear Amigo" para selecionar aleatoriamente um nome da lista. O resultado será exibido na tela.
+- Adicionar nomes à lista (validação para campo vazio).
+- Evita nomes duplicados (case-insensitive).
+- Listagem dinâmica com botões Editar e Remover por item.
+- Edição inline (sem prompt), com salvar/cancelar e validações.
+- Modal de confirmação customizado para remoção e reinício.
+- Persistência no navegador via localStorage.
+- Botão para sortear amigo de forma aleatória.
+- Botões habilitados/desabilitados conforme estado da lista.
 
-## Requisitos
-- Um navegador web moderno para executar a aplicação.
-- Nenhuma instalação adicional é necessária, basta abrir o arquivo `index.html` em um navegador.
+![Projeto](assets/codigo.gif)
 
-## Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para fazer um fork do repositório e enviar pull requests com melhorias ou correções.
+## Estrutura do projeto
+
+- index.html — marcação da aplicação
+- css/styles.css — estilos e responsividade
+- js/script.js — lógica (adicionar, editar, remover, sortear, modal, persistência)
+- assets/ — imagens e GIFs usados no README e interface
+
+## Como executar (local)
+
+1. Abra a pasta do projeto no VS Code ou outro editor.
+2. Abra `index.html` no navegador (duplo clique) ou sirva com um servidor estático:
+   - Com Python 3:
+     - cd amigo-secreto
+     - python -m http.server 8000
+     - Acesse http://localhost:8000
+     - Ou utiliza a extensão Live Server no VS Code
+3. Use a interface para adicionar/editar/remover nomes e testar o sorteio.
+
+## Boas práticas de git (mensagens sugeridas)
+
+- chore: commit inicial
+- feat: adicionar persistência via localStorage
+- feat: implementar edição inline e modal de confirmação
+- fix: corrigir validação de duplicatas
+- docs: atualizar README
+
+## Contribuição
+
+1. Crie uma branch de feature: `git checkout -b feat/minha-funcionalidade`
+2. Faça commits pequenos e descritivos (seguir Conventional Commits em português).
+3. Abra um pull request para revisão.
 
 ## Licença
-Este projeto está licenciado sob a MIT License - veja o arquivo LICENSE para mais detalhes.
+
+MIT — veja o arquivo LICENSE (se necessário, crie um arquivo LICENSE com o texto MIT).
+
